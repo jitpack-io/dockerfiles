@@ -24,12 +24,12 @@ jobs:
         with:
           images: jitpack/base:latest
       
-      - name: Build and push base image
-        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
-        with:
-          context: base
-          push: true
-          tags: jitpack/base:latest
+      # - name: Build and push base image
+      #   uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+      #   with:
+      #     context: base
+      #     push: true
+      #     tags: jitpack/base:latest
 
       - name: Build and push tools image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc

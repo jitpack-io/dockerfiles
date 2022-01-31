@@ -10,10 +10,6 @@ RUN wget -nv https://archive.apache.org/dist/maven/maven-3/3.6.1/binaries/apache
     ln -s /opt/apache-maven-3.6.1/bin/mvn /usr/local/bin && \
     rm apache-maven-3.6.1-bin.zip
 
-# get sbt
-RUN curl -sL "http://dl.bintray.com/sbt/native-packages/sbt/0.13.15/sbt-0.13.15.tgz" | gunzip | tar -x -C /opt && \
-    ln -s /opt/sbt/bin/sbt /usr/local/bin
-
 # get gradle
 ENV GRADLE_VERSION 4.8.1
 RUN wget -nv https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
@@ -32,5 +28,9 @@ RUN wget -nv https://archive.apache.org/dist/ant/binaries/apache-ant-1.10.0-bin.
     unzip apache-ant-1.10.0-bin.zip && \
     ln -s /opt/apache-ant-1.10.0/bin/ant /usr/local/bin && \
     rm apache-ant-1.10.0-bin.zip
+
+# get sbt
+RUN curl -sL "https://github.com/sbt/sbt/releases/download/v1.6.1/sbt-1.6.1.tgz" | gunzip | tar -x -C /opt && \
+    ln -s /opt/sbt/bin/sbt /usr/local/bin
 
 RUN su jitpack -c 'curl -s "https://get.sdkman.io" | bash'
