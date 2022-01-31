@@ -1,8 +1,5 @@
 name: Publish Docker image
 
-# on:
-#   release:
-#     types: [published]
 on:
   push:
     branches: ['master', 'workflow']
@@ -27,10 +24,23 @@ jobs:
         with:
           images: jitpack/base:latest
       
-      - name: Build and push Docker image
+      - name: Build and push base image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: base
           push: true
           tags: jitpack/base:latest
-          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Build and push tools image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: tools
+          push: true
+          tags: jitpack/tools:latest
+
+      - name: Build and push android image
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          context: android
+          push: true
+          tags: jitpack/android:latest
